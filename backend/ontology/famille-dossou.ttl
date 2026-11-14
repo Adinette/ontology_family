@@ -1,0 +1,614 @@
+@prefix : <http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou> a owl:Ontology .
+
+:BeauPere a owl:Class ;
+    rdfs:subClassOf :BeauParent ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :BeauParent :Masculin ) ] .
+
+:BelleFille a owl:Class ;
+    rdfs:subClassOf :Fille ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Personne [ a owl:Restriction ;
+                        owl:onProperty :marieA ;
+                        owl:someValuesFrom :Fils ] ) ] .
+
+:BelleMere a owl:Class ;
+    rdfs:subClassOf :BeauParent ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :BeauParent :Feminin ) ] .
+
+:Cousin a owl:Class ;
+    rdfs:subClassOf :Enfant ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Personne [ a owl:Restriction ;
+                        owl:onProperty :enfantDe ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf ( :Oncle :Tante ) ] ] ) ] .
+
+:Cousine a owl:Class ;
+    rdfs:subClassOf :Enfant ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Personne [ a owl:Restriction ;
+                        owl:onProperty :enfantDe ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf ( :Oncle :Tante ) ] ] ) ] .
+
+:DemiFrere a owl:Class ;
+    rdfs:subClassOf :Frere ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Personne [ a owl:Restriction ;
+                        owl:onProperty :enfantDe ;
+                        owl:someValuesFrom :BeauParent ] ) ] .
+
+:DemiSoeur a owl:Class ;
+    rdfs:subClassOf :Soeur ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Personne [ a owl:Restriction ;
+                        owl:onProperty :enfantDe ;
+                        owl:someValuesFrom :BeauParent ] ) ] .
+
+:Femme a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Personne [ a owl:Restriction ;
+                        owl:onProperty :age ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:int ;
+                                owl:withRestrictions ( [ xsd:minInclusive "21"^^xsd:int ] ) ] ] ) ] .
+
+:Fillette a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Personne [ a owl:Restriction ;
+                        owl:onProperty :age ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:int ;
+                                owl:withRestrictions ( [ xsd:maxInclusive "20"^^xsd:int ] ) ] ] ) ] .
+
+:Garcon a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Personne [ a owl:Restriction ;
+                        owl:onProperty :age ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:int ;
+                                owl:withRestrictions ( [ xsd:maxInclusive "20"^^xsd:int ] ) ] ] ) ] .
+
+:George_AGANGAN a :Masculin,
+        owl:NamedIndividual ;
+    :age "7"^^xsd:int ;
+    :enfantDe1 :Jean_AGANGAN,
+        :Liliane_LAWINI ;
+    :nom "AGANGAN" ;
+    :prenom "George" .
+
+:Homme a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Personne [ a owl:Restriction ;
+                        owl:onProperty :age ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:int ;
+                                owl:withRestrictions ( [ xsd:minInclusive "21"^^xsd:int ] ) ] ] ) ] .
+
+:Kadukpe_LAWINI a :Feminin,
+        owl:NamedIndividual ;
+    :age "8"^^xsd:int ;
+    :enfantDe1 :Claver_LAWINI ;
+    :nom "LAWINI" ;
+    :prenom "Kadukpe" .
+
+:Neveu a owl:Class ;
+    rdfs:subClassOf :Fils ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Personne [ a owl:Restriction ;
+                        owl:onProperty :enfantDe ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf ( :Frere :Soeur ) ] ] ) ] .
+
+:Niece a owl:Class ;
+    rdfs:subClassOf :Fille ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Personne [ a owl:Restriction ;
+                        owl:onProperty :enfantDe ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf ( :Frere :Soeur ) ] ] ) ] .
+
+:PetitFils a owl:Class ;
+    rdfs:subClassOf :PetitEnfant ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :PetitEnfant ) ] .
+
+:PetiteFille a owl:Class ;
+    rdfs:subClassOf :PetitEnfant ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :PetitEnfant ) ] .
+
+:enfantDe1 a owl:ObjectProperty ;
+    rdfs:domain :PetitEnfant ;
+    rdfs:range :Enfant ;
+    rdfs:subPropertyOf :enfantDe ;
+    owl:inverseOf :parentDe1 .
+
+:enfantDe2 a owl:ObjectProperty ;
+    rdfs:domain :Parent ;
+    rdfs:range :GrandParent ;
+    rdfs:subPropertyOf :enfantDe ;
+    owl:inverseOf :parentDe2 .
+
+:enfantDe3 a owl:ObjectProperty ;
+    rdfs:domain :Enfant ;
+    rdfs:range :Parent ;
+    rdfs:subPropertyOf :enfantDe ;
+    owl:inverseOf :parentDe3 .
+
+:estDecede a owl:DatatypeProperty ;
+    rdfs:domain :Personne ;
+    rdfs:range xsd:boolean .
+
+:grandParentDe a owl:ObjectProperty ;
+    owl:propertyChainAxiom ( :parentDe :parentDe ) .
+
+:marieA1 a owl:ObjectProperty ;
+    rdfs:domain :Pere ;
+    rdfs:range :Mere ;
+    rdfs:subPropertyOf :marieA .
+
+:marieA2 a owl:ObjectProperty ;
+    rdfs:domain :BeauFil ;
+    rdfs:range :Fille ;
+    rdfs:subPropertyOf :marieA .
+
+:marieA3 a owl:ObjectProperty ;
+    rdfs:domain :GrandPere ;
+    rdfs:range :GrandMere ;
+    rdfs:subPropertyOf :marieA .
+
+:marieA4 a owl:ObjectProperty ;
+    rdfs:domain :Pere ;
+    rdfs:range :Mere ;
+    rdfs:subPropertyOf :marieA .
+
+:nom a owl:DatatypeProperty ;
+    rdfs:domain :Personne ;
+    rdfs:range xsd:string .
+
+:nomMarital a owl:DatatypeProperty ;
+    rdfs:domain :Personne ;
+    rdfs:range xsd:string .
+
+:prenom a owl:DatatypeProperty ;
+    rdfs:domain :Personne ;
+    rdfs:range xsd:string .
+
+:BeauFil a owl:Class ;
+    rdfs:subClassOf :Fils ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Personne [ a owl:Restriction ;
+                        owl:onProperty :marieA ;
+                        owl:someValuesFrom :Fille ] ) ] .
+
+:Benoit_ADAGNON a :Masculin,
+        owl:NamedIndividual ;
+    :age "42"^^xsd:int ;
+    :beauParentDe :Didier_ADIHOU,
+        :Kolade_ADIHOU,
+        :Narcisse_ADIHOU ;
+    :marieA2 :Alexine_DOSSOU ;
+    :nom "ADAGNON" ;
+    :prenom "Benoit" .
+
+:GrandMere a owl:Class ;
+    rdfs:subClassOf :GrandParent ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :GrandParent ) ] .
+
+:GrandPere a owl:Class ;
+    rdfs:subClassOf :GrandParent ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :GrandParent :Masculin ) ] .
+
+:Jean_AGANGAN a :Masculin,
+        owl:NamedIndividual ;
+    :age "38"^^xsd:int ;
+    :marieA4 :Liliane_LAWINI ;
+    :nom "AGANGAN" ;
+    :prenom "Jean" .
+
+:Julie_TOSSOU a :Feminin,
+        owl:NamedIndividual ;
+    :age "35"^^xsd:int ;
+    :nom "TOSSOU" ;
+    :nomMarital "LAWINI" ;
+    :prenom "Julie" .
+
+:beauEnfantDe a owl:ObjectProperty .
+
+:beauParentDe a owl:ObjectProperty ;
+    rdfs:domain :Personne ;
+    rdfs:range :Personne ;
+    owl:inverseOf :beauEnfantDe .
+
+:parentDe1 a owl:ObjectProperty ;
+    rdfs:subPropertyOf :parentDe .
+
+:parentDe2 a owl:ObjectProperty ;
+    rdfs:subPropertyOf :parentDe .
+
+:parentDe3 a owl:ObjectProperty ;
+    rdfs:subPropertyOf :parentDe .
+
+:Beranger_DOSSOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "25"^^xsd:int ;
+    :enfantDe1 :Marise_DAGAN,
+        :Victorin_DOSSOU ;
+    :frereDe :Jilienne_DOSSOU,
+        :Joshua_DOSSOU ;
+    :nom "DOSSOU" ;
+    :prenom "Beranger" .
+
+:Jilienne_DOSSOU a :Feminin,
+        owl:NamedIndividual ;
+    :age "27"^^xsd:int ;
+    :enfantDe1 :Marise_DAGAN,
+        :Victorin_DOSSOU ;
+    :nom "DOSSOU" ;
+    :prenom "Jilienne" ;
+    :soeurDe :Beranger_DOSSOU,
+        :Joshua_DOSSOU .
+
+:Joshua_DOSSOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "30"^^xsd:int ;
+    :enfantDe1 :Marise_DAGAN,
+        :Victorin_DOSSOU ;
+    :frereDe :Beranger_DOSSOU,
+        :Jilienne_DOSSOU ;
+    :nom "DOSSOU" ;
+    :prenom "Joshua" .
+
+:Mere a owl:Class ;
+    rdfs:subClassOf :Parent ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Parent ) ] .
+
+:Oncle a owl:Class ;
+    rdfs:subClassOf :Frere ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Personne [ a owl:Restriction ;
+                        owl:onProperty :frereDe ;
+                        owl:someValuesFrom :Parent ] ) ] .
+
+:Pere a owl:Class ;
+    rdfs:subClassOf :Parent ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Parent ) ] .
+
+:Tante a owl:Class ;
+    rdfs:subClassOf :Soeur ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Personne [ a owl:Restriction ;
+                        owl:onProperty :soeurDe ;
+                        owl:someValuesFrom :Parent ] ) ] .
+
+:frereDe a owl:ObjectProperty,
+        owl:TransitiveProperty .
+
+:soeurDe a owl:ObjectProperty,
+        owl:TransitiveProperty .
+
+:Estelle_LAWINI a :Feminin,
+        owl:NamedIndividual ;
+    :age "37"^^xsd:int ;
+    :enfantDe :Hoctense_HODONOU,
+        :Victorin_LAWINI ;
+    :nom "LAWINI" ;
+    :prenom "Estelle" ;
+    :soeurDe :Brigitte_LAWINI,
+        :Claver_LAWINI,
+        :Liliane_LAWINI .
+
+:Fils a owl:Class ;
+    rdfs:subClassOf :Enfant ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Enfant ) ] .
+
+:Jolie_ADAGNON a :Feminin,
+        owl:NamedIndividual ;
+    :age "7"^^xsd:int ;
+    :enfantDe1 :Alexine_DOSSOU,
+        :Benoit_ADAGNON ;
+    :nom "ADAGNON" ;
+    :prenom "Jolie" ;
+    :soeurDe :Didier_ADIHOU,
+        :Kolade_ADIHOU,
+        :Narcisse_ADIHOU .
+
+:Kotchikpa_DOSSOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "95"^^xsd:int ;
+    :marieA3 :Josephine_AKPO ;
+    :nom "DOSSOU" ;
+    :prenom "Kotchikpa" .
+
+:Mathieu_ADIHOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "35"^^xsd:int ;
+    :estDecede true ;
+    :marieA2 :Alexine_DOSSOU ;
+    :nom "ADIHOU" ;
+    :prenom "Mathieu" .
+
+:Claver_LAWINI a :Masculin,
+        owl:NamedIndividual ;
+    :age "40"^^xsd:int ;
+    :enfantDe2 :Hoctense_HODONOU,
+        :Victorin_LAWINI ;
+    :frereDe :Brigitte_LAWINI,
+        :Estelle_LAWINI,
+        :Liliane_LAWINI ;
+    :marieA :Julie_TOSSOU ;
+    :nom "LAWINI" ;
+    :prenom "Claver" .
+
+:Didier_ADIHOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "30"^^xsd:int ;
+    :enfantDe1 :Alexine_DOSSOU,
+        :Mathieu_ADIHOU ;
+    :frereDe :Jolie_ADAGNON,
+        :Kolade_ADIHOU,
+        :Narcisse_ADIHOU ;
+    :nom "ADIHOU" ;
+    :prenom "Didier" .
+
+:Emmanuel_DOSSOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "10"^^xsd:int ;
+    :enfantDe1 :Bienvenue_DOSSOU,
+        :Brigitte_LAWINI ;
+    :frereDe :Fructueuse_DOSSOU,
+        :MarieHeureuse_DOSSOU,
+        :Perseverance_DOSSOU,
+        :Reconfort_DOSSOU ;
+    :nom "DOSSOU" ;
+    :prenom "Emmanuel" .
+
+:Fille a owl:Class ;
+    rdfs:subClassOf :Enfant ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Enfant ) ] .
+
+:Frere a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Masculin :Personne [ a owl:Restriction ;
+                        owl:onProperty :frereDe ;
+                        owl:someValuesFrom :Personne ] ) ] .
+
+:Fructueuse_DOSSOU a :Feminin,
+        owl:NamedIndividual ;
+    :age "17"^^xsd:int ;
+    :enfantDe1 :Bienvenue_DOSSOU,
+        :Brigitte_LAWINI ;
+    :nom "DOSSOU" ;
+    :prenom "Fructueuse" ;
+    :soeurDe :Emmanuel_DOSSOU,
+        :MarieHeureuse_DOSSOU,
+        :Perseverance_DOSSOU,
+        :Reconfort_DOSSOU .
+
+:Josephine_AKPO a :Feminin,
+        owl:NamedIndividual ;
+    :age "85"^^xsd:int ;
+    :nom "AKPO" ;
+    :nomMarital "DOSSOU" ;
+    :prenom "Joséphine" .
+
+:Kolade_ADIHOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "33"^^xsd:int ;
+    :enfantDe1 :Alexine_DOSSOU,
+        :Mathieu_ADIHOU ;
+    :frereDe :Didier_ADIHOU,
+        :Jolie_ADAGNON,
+        :Narcisse_ADIHOU ;
+    :nom "ADIHOU" ;
+    :prenom "Koladé" .
+
+:MarieHeureuse_DOSSOU a :Feminin,
+        owl:NamedIndividual ;
+    :age "12"^^xsd:int ;
+    :enfantDe1 :Bienvenue_DOSSOU,
+        :Brigitte_LAWINI ;
+    :nom "DOSSOU" ;
+    :prenom "Marie-Heureuse" ;
+    :soeurDe :Emmanuel_DOSSOU,
+        :Fructueuse_DOSSOU,
+        :Perseverance_DOSSOU,
+        :Reconfort_DOSSOU .
+
+:Marise_DAGAN a :Feminin,
+        owl:NamedIndividual ;
+    :age "55"^^xsd:int ;
+    :nom "DAGAN" ;
+    :nomMarital "DOSSOU" ;
+    :prenom "Marise" .
+
+:Narcisse_ADIHOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "27"^^xsd:int ;
+    :enfantDe1 :Alexine_DOSSOU,
+        :Mathieu_ADIHOU ;
+    :frereDe :Didier_ADIHOU,
+        :Jolie_ADAGNON,
+        :Kolade_ADIHOU ;
+    :nom "ADIHOU" ;
+    :prenom "Narcisse" .
+
+:Perseverance_DOSSOU a :Feminin,
+        owl:NamedIndividual ;
+    :age "25"^^xsd:int ;
+    :enfantDe1 :Bienvenue_DOSSOU,
+        :Brigitte_LAWINI ;
+    :nom "DOSSOU" ;
+    :prenom "Persévérance" ;
+    :soeurDe :Emmanuel_DOSSOU,
+        :Fructueuse_DOSSOU,
+        :MarieHeureuse_DOSSOU,
+        :Reconfort_DOSSOU .
+
+:Reconfort_DOSSOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "20"^^xsd:int ;
+    :enfantDe1 :Bienvenue_DOSSOU,
+        :Brigitte_LAWINI ;
+    :frereDe :Emmanuel_DOSSOU,
+        :Fructueuse_DOSSOU,
+        :MarieHeureuse_DOSSOU,
+        :Perseverance_DOSSOU ;
+    :nom "DOSSOU" ;
+    :prenom "Reconfort" .
+
+:Soeur a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Feminin :Personne [ a owl:Restriction ;
+                        owl:onProperty :soeurDe ;
+                        owl:someValuesFrom :Personne ] ) ] .
+
+:Victorin_LAWINI a :Masculin,
+        owl:NamedIndividual ;
+    :age "89"^^xsd:int ;
+    :marieA3 :Hoctense_HODONOU ;
+    :nom "LAWINI" ;
+    :prenom "Victorin" .
+
+:age a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:domain :Personne ;
+    rdfs:range xsd:int .
+
+:GrandParent a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Personne [ a owl:Restriction ;
+                        owl:onProperty :parentDe ;
+                        owl:someValuesFrom :Parent ] ) ] .
+
+:Hoctense_HODONOU a :Feminin,
+        owl:NamedIndividual ;
+    :age "80"^^xsd:int ;
+    :nom "HODONOU" ;
+    :nomMarital "LAWINI" ;
+    :prenom "Hoctense" .
+
+:Liliane_LAWINI a :Feminin,
+        owl:NamedIndividual ;
+    :age "35"^^xsd:int ;
+    :enfantDe2 :Hoctense_HODONOU,
+        :Victorin_LAWINI ;
+    :nom "LAWINI" ;
+    :nomMarital "AGANGAN" ;
+    :prenom "Liliane" ;
+    :soeurDe :Brigitte_LAWINI,
+        :Claver_LAWINI,
+        :Estelle_LAWINI .
+
+:PetitEnfant a owl:Class ;
+    rdfs:subClassOf :Enfant ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Personne [ a owl:Restriction ;
+                        owl:onProperty :enfantDe ;
+                        owl:someValuesFrom :Enfant ] ) ] .
+
+:Victorin_DOSSOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "60"^^xsd:int ;
+    :enfantDe2 :Josephine_AKPO,
+        :Kotchikpa_DOSSOU ;
+    :frereDe :Alexine_DOSSOU,
+        :Bienvenue_DOSSOU ;
+    :marieA4 :Marise_DAGAN ;
+    :nom "DOSSOU" ;
+    :prenom "Victorin" .
+
+:BeauParent a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Personne [ a owl:Restriction ;
+                        owl:onProperty :beauParentDe ;
+                        owl:someValuesFrom :Personne ] ) ] .
+
+:marieA a owl:ObjectProperty,
+        owl:SymmetricProperty .
+
+:Bienvenue_DOSSOU a :Masculin,
+        owl:NamedIndividual ;
+    :age "50"^^xsd:int ;
+    :enfantDe2 :Josephine_AKPO,
+        :Kotchikpa_DOSSOU ;
+    :frereDe :Alexine_DOSSOU,
+        :Victorin_DOSSOU ;
+    :marieA1 :Brigitte_LAWINI ;
+    :nom "DOSSOU" ;
+    :prenom "Bienvenue" .
+
+:Alexine_DOSSOU a :Feminin,
+        owl:NamedIndividual ;
+    :age "57"^^xsd:int ;
+    :enfantDe2 :Josephine_AKPO,
+        :Kotchikpa_DOSSOU ;
+    :nom "DOSSOU" ;
+    :nomMarital "ADAGNON" ;
+    :prenom "Alexine" ;
+    :soeurDe :Bienvenue_DOSSOU,
+        :Victorin_DOSSOU .
+
+:parentDe a owl:ObjectProperty .
+
+:Brigitte_LAWINI a :Feminin,
+        owl:NamedIndividual ;
+    :age "45"^^xsd:int ;
+    :enfantDe2 :Hoctense_HODONOU,
+        :Victorin_LAWINI ;
+    :nom "LAWINI" ;
+    :nomMarital "DOSSOU" ;
+    :prenom "Brigitte" ;
+    :soeurDe :Claver_LAWINI,
+        :Estelle_LAWINI,
+        :Liliane_LAWINI .
+
+:Parent a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Personne [ a owl:Restriction ;
+                        owl:onProperty :parentDe ;
+                        owl:someValuesFrom :Personne ] ) ] .
+
+:Enfant a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( :Personne [ a owl:Restriction ;
+                        owl:onProperty :enfantDe ;
+                        owl:someValuesFrom :Personne ] ) ] .
+
+:enfantDe a owl:ObjectProperty ;
+    owl:inverseOf :parentDe .
+
+:Feminin a owl:Class ;
+    rdfs:subClassOf :Personne ;
+    owl:disjointWith :Masculin .
+
+:Masculin a owl:Class ;
+    rdfs:subClassOf :Personne .
+
+:Personne a owl:Class .
+
