@@ -1,0 +1,11 @@
+# Extension de l'ontologie pour l'application web (ne modifie pas le fichier de Protégé).
+# Propriétés de données supplémentaires utilisées par l'interface : profession, photo, années.
+@prefix : <http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:profession a owl:DatatypeProperty ; rdfs:domain :Personne ; rdfs:range xsd:string .
+:avatar a owl:DatatypeProperty ; rdfs:domain :Personne ; rdfs:range xsd:string .
+:anneeNaissance a owl:DatatypeProperty ; rdfs:domain :Personne ; rdfs:range xsd:int .
+:anneeDeces a owl:DatatypeProperty ; rdfs:domain :Personne ; rdfs:range xsd:int .

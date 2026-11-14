@@ -1,0 +1,2068 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xml:base="http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou" ontologyIRI="http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou">
+    <Prefix name="" IRI="http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Personne"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GrandParent"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#marieA1"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Homme"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Oncle"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#parentDe"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BelleMere"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#enfantDe1"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#parentDe2"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cousin"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GrandPere"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Feminin"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#marieA4"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Fille"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Tante"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pere"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#enfantDe"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DemiFrere"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DemiSoeur"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PetiteFille"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BeauFil"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#grandParentDe"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#parentDe3"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Frere"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#soeurDe"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Parent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mere"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BeauParent"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PetitFils"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BeauPere"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Soeur"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Neveu"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#marieA3"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Femme"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#enfantDe3"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Masculin"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#age"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Fils"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Fillette"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#frereDe"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Enfant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Niece"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BelleFille"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#GrandMere"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Garcon"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#marieA2"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#enfantDe2"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cousine"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#parentDe1"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PetitEnfant"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#marieA"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#beauParentDe"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#beauEnfantDe"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#prenom"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#nom"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#nomMarital"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#estDecede"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Kotchikpa_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Julie_TOSSOU"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Jean_AGANGAN"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Kadukpe_LAWINI"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#George_AGANGAN"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#BeauFil"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#marieA"/>
+                <Class IRI="#Fille"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#BeauPere"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#BeauParent"/>
+            <Class IRI="#Masculin"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#BelleFille"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#marieA"/>
+                <Class IRI="#Fils"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#BelleMere"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#BeauParent"/>
+            <Class IRI="#Feminin"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Cousin"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#enfantDe"/>
+                <ObjectUnionOf>
+                    <Class IRI="#Oncle"/>
+                    <Class IRI="#Tante"/>
+                </ObjectUnionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Cousine"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#enfantDe"/>
+                <ObjectUnionOf>
+                    <Class IRI="#Oncle"/>
+                    <Class IRI="#Tante"/>
+                </ObjectUnionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DemiFrere"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#enfantDe"/>
+                <Class IRI="#BeauParent"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DemiSoeur"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#enfantDe"/>
+                <Class IRI="#BeauParent"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Frere"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#frereDe"/>
+                <Class IRI="#Personne"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#GrandMere"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#GrandParent"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#GrandParent"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#parentDe"/>
+                <Class IRI="#Parent"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#GrandPere"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#GrandParent"/>
+            <Class IRI="#Masculin"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Mere"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Parent"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Neveu"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#enfantDe"/>
+                <ObjectUnionOf>
+                    <Class IRI="#Frere"/>
+                    <Class IRI="#Soeur"/>
+                </ObjectUnionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Niece"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#enfantDe"/>
+                <ObjectUnionOf>
+                    <Class IRI="#Frere"/>
+                    <Class IRI="#Soeur"/>
+                </ObjectUnionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Oncle"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#frereDe"/>
+                <Class IRI="#Parent"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Pere"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Parent"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PetitEnfant"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#enfantDe"/>
+                <Class IRI="#Enfant"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PetitFils"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#PetitEnfant"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PetiteFille"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#PetitEnfant"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Soeur"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#soeurDe"/>
+                <Class IRI="#Personne"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Tante"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#soeurDe"/>
+                <Class IRI="#Parent"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#BeauFil"/>
+        <Class IRI="#Fils"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BeauParent"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BeauPere"/>
+        <Class IRI="#BeauParent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BelleFille"/>
+        <Class IRI="#Fille"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BelleMere"/>
+        <Class IRI="#BeauParent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cousin"/>
+        <Class IRI="#Enfant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cousine"/>
+        <Class IRI="#Enfant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DemiFrere"/>
+        <Class IRI="#Frere"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DemiSoeur"/>
+        <Class IRI="#Soeur"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Enfant"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Femme"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fille"/>
+        <Class IRI="#Enfant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fillette"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fils"/>
+        <Class IRI="#Enfant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frere"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Garcon"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GrandMere"/>
+        <Class IRI="#GrandParent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GrandParent"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GrandPere"/>
+        <Class IRI="#GrandParent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Homme"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mere"/>
+        <Class IRI="#Parent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Neveu"/>
+        <Class IRI="#Fils"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Niece"/>
+        <Class IRI="#Fille"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Oncle"/>
+        <Class IRI="#Frere"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Parent"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pere"/>
+        <Class IRI="#Parent"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PetitEnfant"/>
+        <Class IRI="#Enfant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PetitFils"/>
+        <Class IRI="#PetitEnfant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PetiteFille"/>
+        <Class IRI="#PetitEnfant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Soeur"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tante"/>
+        <Class IRI="#Soeur"/>
+    </SubClassOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <ObjectProperty IRI="#enfantDe"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <ObjectProperty IRI="#enfantDe"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#enfantDe3"/>
+        <ObjectProperty IRI="#enfantDe"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#marieA1"/>
+        <ObjectProperty IRI="#marieA"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#marieA2"/>
+        <ObjectProperty IRI="#marieA"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#marieA3"/>
+        <ObjectProperty IRI="#marieA"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#marieA4"/>
+        <ObjectProperty IRI="#marieA"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#parentDe1"/>
+        <ObjectProperty IRI="#parentDe"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#parentDe2"/>
+        <ObjectProperty IRI="#parentDe"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#parentDe3"/>
+        <ObjectProperty IRI="#parentDe"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#enfantDe"/>
+        <ObjectProperty IRI="#parentDe"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <ObjectProperty IRI="#parentDe1"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <ObjectProperty IRI="#parentDe2"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#enfantDe3"/>
+        <ObjectProperty IRI="#parentDe3"/>
+    </InverseObjectProperties>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#marieA"/>
+    </SymmetricObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#frereDe"/>
+    </TransitiveObjectProperty>
+    <TransitiveObjectProperty>
+        <ObjectProperty IRI="#soeurDe"/>
+    </TransitiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <Class IRI="#PetitEnfant"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <Class IRI="#Parent"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#enfantDe3"/>
+        <Class IRI="#Enfant"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#marieA1"/>
+        <Class IRI="#Pere"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#marieA2"/>
+        <Class IRI="#BeauFil"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#marieA3"/>
+        <Class IRI="#GrandPere"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#marieA4"/>
+        <Class IRI="#Pere"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <Class IRI="#Enfant"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <Class IRI="#GrandParent"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#enfantDe3"/>
+        <Class IRI="#Parent"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#marieA1"/>
+        <Class IRI="#Mere"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#marieA2"/>
+        <Class IRI="#Fille"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#marieA3"/>
+        <Class IRI="#GrandMere"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#marieA4"/>
+        <Class IRI="#Mere"/>
+    </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#age"/>
+        <Class IRI="#Personne"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#age"/>
+        <Datatype abbreviatedIRI="xsd:int"/>
+    </DataPropertyRange>
+    <SubClassOf>
+        <Class IRI="#Feminin"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Masculin"/>
+        <Class IRI="#Personne"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Feminin"/>
+        <Class IRI="#Masculin"/>
+    </DisjointClasses>
+    <EquivalentClasses>
+        <Class IRI="#Parent"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#parentDe"/>
+                <Class IRI="#Personne"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Enfant"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#enfantDe"/>
+                <Class IRI="#Personne"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Fils"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Enfant"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Fille"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Enfant"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Homme"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Personne"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#age"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:int"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">21</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Femme"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Personne"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#age"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:int"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">21</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Garcon"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Masculin"/>
+            <Class IRI="#Personne"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#age"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:int"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">20</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Fillette"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Feminin"/>
+            <Class IRI="#Personne"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#age"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:int"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">20</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#BeauParent"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Personne"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#beauParentDe"/>
+                <Class IRI="#Personne"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#beauParentDe"/>
+        <ObjectProperty IRI="#beauEnfantDe"/>
+    </InverseObjectProperties>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#beauParentDe"/>
+        <Class IRI="#Personne"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#beauParentDe"/>
+        <Class IRI="#Personne"/>
+    </ObjectPropertyRange>
+    <SubObjectPropertyOf>
+        <ObjectPropertyChain>
+            <ObjectProperty IRI="#parentDe"/>
+            <ObjectProperty IRI="#parentDe"/>
+        </ObjectPropertyChain>
+        <ObjectProperty IRI="#grandParentDe"/>
+    </SubObjectPropertyOf>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#age"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="#prenom"/>
+        <Class IRI="#Personne"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#prenom"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nom"/>
+        <Class IRI="#Personne"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#nom"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nomMarital"/>
+        <Class IRI="#Personne"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#nomMarital"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#estDecede"/>
+        <Class IRI="#Personne"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#estDecede"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Kotchikpa_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Julie_TOSSOU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#Jean_AGANGAN"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Feminin"/>
+        <NamedIndividual IRI="#Kadukpe_LAWINI"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Masculin"/>
+        <NamedIndividual IRI="#George_AGANGAN"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Kotchikpa_DOSSOU"/>
+        <Literal>Kotchikpa</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Kotchikpa_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Kotchikpa_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">95</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+        <Literal>Joséphine</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+        <Literal>AKPO</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nomMarital"/>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">85</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+        <Literal>Bienvenue</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">50</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+        <Literal>Brigitte</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+        <Literal>LAWINI</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nomMarital"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">45</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+        <Literal>Persévérance</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+        <Literal>Reconfort</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">20</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+        <Literal>Fructueuse</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">17</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+        <Literal>Emmanuel</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+        <Literal>Marie-Heureuse</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">12</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+        <Literal>Victorin</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">60</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+        <Literal>Marise</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+        <Literal>DAGAN</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nomMarital"/>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">55</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+        <Literal>Joshua</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">30</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+        <Literal>Beranger</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">25</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+        <Literal>Jilienne</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">27</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+        <Literal>Alexine</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+        <Literal>DOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nomMarital"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+        <Literal>ADAGNON</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">57</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+        <Literal>Mathieu</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+        <Literal>ADIHOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">35</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#estDecede"/>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+        <Literal>Benoit</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+        <Literal>ADAGNON</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">42</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+        <Literal>Didier</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+        <Literal>ADIHOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">30</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+        <Literal>Koladé</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+        <Literal>ADIHOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">33</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+        <Literal>Narcisse</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+        <Literal>ADIHOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">27</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+        <Literal>Jolie</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+        <Literal>ADAGNON</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">7</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+        <Literal>Victorin</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+        <Literal>LAWINI</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">89</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+        <Literal>Hoctense</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+        <Literal>HODONOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nomMarital"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+        <Literal>LAWINI</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">80</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+        <Literal>Claver</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+        <Literal>LAWINI</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">40</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Julie_TOSSOU"/>
+        <Literal>Julie</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Julie_TOSSOU"/>
+        <Literal>TOSSOU</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nomMarital"/>
+        <NamedIndividual IRI="#Julie_TOSSOU"/>
+        <Literal>LAWINI</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Julie_TOSSOU"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">35</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+        <Literal>Liliane</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+        <Literal>LAWINI</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nomMarital"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+        <Literal>AGANGAN</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">35</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Jean_AGANGAN"/>
+        <Literal>Jean</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Jean_AGANGAN"/>
+        <Literal>AGANGAN</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Jean_AGANGAN"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">38</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+        <Literal>Estelle</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+        <Literal>LAWINI</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">37</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#Kadukpe_LAWINI"/>
+        <Literal>Kadukpe</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#Kadukpe_LAWINI"/>
+        <Literal>LAWINI</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#Kadukpe_LAWINI"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">8</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#prenom"/>
+        <NamedIndividual IRI="#George_AGANGAN"/>
+        <Literal>George</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nom"/>
+        <NamedIndividual IRI="#George_AGANGAN"/>
+        <Literal>AGANGAN</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#age"/>
+        <NamedIndividual IRI="#George_AGANGAN"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">7</Literal>
+    </DataPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+        <NamedIndividual IRI="#Kotchikpa_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+        <NamedIndividual IRI="#Kotchikpa_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+        <NamedIndividual IRI="#Kotchikpa_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe2"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#George_AGANGAN"/>
+        <NamedIndividual IRI="#Jean_AGANGAN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#George_AGANGAN"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#enfantDe1"/>
+        <NamedIndividual IRI="#Kadukpe_LAWINI"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#marieA3"/>
+        <NamedIndividual IRI="#Kotchikpa_DOSSOU"/>
+        <NamedIndividual IRI="#Josephine_AKPO"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#marieA3"/>
+        <NamedIndividual IRI="#Victorin_LAWINI"/>
+        <NamedIndividual IRI="#Hoctense_HODONOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#marieA1"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#marieA4"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+        <NamedIndividual IRI="#Marise_DAGAN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#marieA2"/>
+        <NamedIndividual IRI="#Mathieu_ADIHOU"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#marieA2"/>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#marieA4"/>
+        <NamedIndividual IRI="#Jean_AGANGAN"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#marieA"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+        <NamedIndividual IRI="#Julie_TOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#beauParentDe"/>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#beauParentDe"/>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#beauParentDe"/>
+        <NamedIndividual IRI="#Benoit_ADAGNON"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+        <NamedIndividual IRI="#Bienvenue_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Alexine_DOSSOU"/>
+        <NamedIndividual IRI="#Victorin_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+        <NamedIndividual IRI="#Perseverance_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+        <NamedIndividual IRI="#Reconfort_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+        <NamedIndividual IRI="#Fructueuse_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#MarieHeureuse_DOSSOU"/>
+        <NamedIndividual IRI="#Emmanuel_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+        <NamedIndividual IRI="#Joshua_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Jilienne_DOSSOU"/>
+        <NamedIndividual IRI="#Beranger_DOSSOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+        <NamedIndividual IRI="#Didier_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+        <NamedIndividual IRI="#Kolade_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Jolie_ADAGNON"/>
+        <NamedIndividual IRI="#Narcisse_ADIHOU"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#frereDe"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+        <NamedIndividual IRI="#Brigitte_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+        <NamedIndividual IRI="#Claver_LAWINI"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#soeurDe"/>
+        <NamedIndividual IRI="#Estelle_LAWINI"/>
+        <NamedIndividual IRI="#Liliane_LAWINI"/>
+    </ObjectPropertyAssertion>
+</Ontology>
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
