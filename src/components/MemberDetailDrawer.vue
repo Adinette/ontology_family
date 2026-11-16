@@ -84,12 +84,22 @@
               <span v-else class="text-slate-400 italic">Non renseignée</span>
             </div>
 
-            <!-- Conjoint -->
+            <!-- Conjoint(e)(s) -->
             <div class="p-3 rounded-xl bg-rose-50/50 border border-rose-200/60 col-span-2">
-              <span class="text-[10px] text-rose-500 font-bold block uppercase">Conjoint(e)</span>
-              <span v-if="selectedMemberRelations.spouse" @click="selectMember(selectedMemberRelations.spouse.id)" class="font-bold text-rose-800 hover:underline cursor-pointer">
-                💍 {{ selectedMemberRelations.spouse.name }} ({{ selectedMemberRelations.spouse.age }} ans)
+              <span class="text-[10px] text-rose-500 font-bold block uppercase">
+                Conjoint(e) {{ (selectedMemberRelations.spouses || []).length > 1 ? `(${selectedMemberRelations.spouses.length})` : '' }}
               </span>
+              <div v-if="selectedMemberRelations.spouse || (selectedMemberRelations.spouses && selectedMemberRelations.spouses.length > 0)" class="space-y-1 mt-1">
+                <div 
+                  v-for="sp in (selectedMemberRelations.spouses && selectedMemberRelations.spouses.length > 0 ? selectedMemberRelations.spouses : [selectedMemberRelations.spouse])"
+                  :key="sp.id"
+                  @click="selectMember(sp.id)" 
+                  class="font-bold text-rose-800 hover:underline cursor-pointer flex items-center gap-1.5"
+                >
+                  <span>💍</span>
+                  <span>{{ sp.name }} ({{ sp.age }} ans)</span>
+                </div>
+              </div>
               <span v-else class="text-slate-400 italic">Célibataire / Non marié(e)</span>
             </div>
           </div>
@@ -125,9 +135,9 @@
           <!-- Enfants -->
           <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
             <span class="text-[10px] text-slate-500 font-bold uppercase block">
-              Enfants ({{ selectedMemberRelations.children.length }})
+              Enfants ({{ (selectedMemberRelations.children || []).length }})
             </span>
-            <div v-if="selectedMemberRelations.children.length === 0" class="text-slate-400 italic text-[11px]">
+            <div v-if="!selectedMemberRelations.children || selectedMemberRelations.children.length === 0" class="text-slate-400 italic text-[11px]">
               Aucun enfant répertorié
             </div>
             <div v-else class="flex flex-wrap gap-1.5">
@@ -137,7 +147,31 @@
                 @click="selectMember(c.id)"
                 class="px-2 py-1 bg-white border border-slate-200 hover:border-emerald-400 rounded-lg text-slate-800 cursor-pointer font-medium hover:text-emerald-700"
               >
-                {{ c.gender === 'M' ? '👦' : '👧' }} {{ c.name }}
+                {{ c.gender === 'M' ? '👦 Fils' : '👧 Fille' }} : {{ c.name }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Petits-Enfants (Raisonnement OWL / Fuseki) -->
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
+            <span class="text-[10px] text-slate-500 font-bold uppercase block flex items-center justify-between">
+              <span>Petits-Enfants ({{ (selectedMemberRelations.grandchildren || []).length }})</span>
+              <span v-if="(selectedMemberRelations.grandchildren || []).length > 0" class="text-[9px] bg-teal-100 text-teal-800 font-bold px-1.5 py-0.2 rounded">
+                Génération suivante
+              </span>
+            </span>
+            <div v-if="!selectedMemberRelations.grandchildren || selectedMemberRelations.grandchildren.length === 0" class="text-slate-400 italic text-[11px]">
+              Aucun petit-enfant identifié
+            </div>
+            <div v-else class="flex flex-wrap gap-1.5">
+              <span 
+                v-for="gc in selectedMemberRelations.grandchildren" 
+                :key="gc.id"
+                @click="selectMember(gc.id)"
+                class="px-2 py-1 bg-white border border-slate-200 hover:border-teal-400 rounded-lg text-slate-800 cursor-pointer font-medium hover:text-teal-700 flex items-center gap-1"
+              >
+                <span>{{ gc.gender === 'M' ? '👦' : '👧' }}</span>
+                <span>{{ gc.name }}</span>
               </span>
             </div>
           </div>
@@ -145,9 +179,9 @@
           <!-- Grands-Parents -->
           <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
             <span class="text-[10px] text-slate-500 font-bold uppercase block">
-              Grands-Parents ({{ selectedMemberRelations.grandparents.length }})
+              Grands-Parents ({{ (selectedMemberRelations.grandparents || []).length }})
             </span>
-            <div v-if="selectedMemberRelations.grandparents.length === 0" class="text-slate-400 italic text-[11px]">
+            <div v-if="!selectedMemberRelations.grandparents || selectedMemberRelations.grandparents.length === 0" class="text-slate-400 italic text-[11px]">
               Non identifiés dans l'arbre
             </div>
             <div v-else class="flex flex-wrap gap-1.5">
@@ -165,9 +199,9 @@
           <!-- Oncles & Tantes -->
           <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
             <span class="text-[10px] text-slate-500 font-bold uppercase block">
-              Oncles & Tantes ({{ selectedMemberRelations.unclesAndAunts.length }})
+              Oncles & Tantes ({{ (selectedMemberRelations.unclesAndAunts || []).length }})
             </span>
-            <div v-if="selectedMemberRelations.unclesAndAunts.length === 0" class="text-slate-400 italic text-[11px]">
+            <div v-if="!selectedMemberRelations.unclesAndAunts || selectedMemberRelations.unclesAndAunts.length === 0" class="text-slate-400 italic text-[11px]">
               Aucun oncle ou tante
             </div>
             <div v-else class="flex flex-wrap gap-1.5">
@@ -182,12 +216,32 @@
             </div>
           </div>
 
+          <!-- Neveux & Nièces (Raisonnement OWL / Fuseki) -->
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
+            <span class="text-[10px] text-slate-500 font-bold uppercase block">
+              Neveux & Nièces ({{ (selectedMemberRelations.nephewsAndNieces || []).length }})
+            </span>
+            <div v-if="!selectedMemberRelations.nephewsAndNieces || selectedMemberRelations.nephewsAndNieces.length === 0" class="text-slate-400 italic text-[11px]">
+              Aucun neveu ou nièce
+            </div>
+            <div v-else class="flex flex-wrap gap-1.5">
+              <span 
+                v-for="nn in selectedMemberRelations.nephewsAndNieces" 
+                :key="nn.id"
+                @click="selectMember(nn.id)"
+                class="px-2 py-1 bg-white border border-slate-200 hover:border-emerald-400 rounded-lg text-slate-800 cursor-pointer font-medium hover:text-emerald-700"
+              >
+                {{ nn.gender === 'M' ? '👦 Neveu' : '👧 Nièce' }} : {{ nn.name }}
+              </span>
+            </div>
+          </div>
+
           <!-- Cousins -->
           <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
             <span class="text-[10px] text-slate-500 font-bold uppercase block">
-              Cousins Germains ({{ selectedMemberRelations.cousins.length }})
+              Cousins Germains ({{ (selectedMemberRelations.cousins || []).length }})
             </span>
-            <div v-if="selectedMemberRelations.cousins.length === 0" class="text-slate-400 italic text-[11px]">
+            <div v-if="!selectedMemberRelations.cousins || selectedMemberRelations.cousins.length === 0" class="text-slate-400 italic text-[11px]">
               Aucun cousin germain
             </div>
             <div v-else class="flex flex-wrap gap-1.5">

@@ -10,16 +10,13 @@
 
       <div class="relative z-10 max-w-2xl">
         <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold text-emerald-200 mb-3 backdrop-blur-sm">
-          <span>🌿 Arbre Généalogique Sémantique</span>
-          <span>•</span>
-          <span>IFRI 2026</span>
+          <span>🌿 Arbre Généalogique</span>
         </div>
         <h1 class="text-3xl font-extrabold tracking-tight">
           Tableau de Bord Généalogique
         </h1>
         <p class="text-emerald-100/90 text-sm mt-2 leading-relaxed">
-          Bienvenue sur l'interface de gestion et de raisonnement sémantique. Visualisez la structure de la famille fictive, les axiomes OWL déduits et explorez les liens intergénérationnels.
-        </p>
+Bienvenue sur l'interface de gestion de la famille DOSSOU.Visualisez la structure de la famille, les axiomes OWL déduits et explorez les liens intergénérationnels.        </p>
 
         <div class="flex flex-wrap items-center gap-3 mt-5">
           <button
@@ -144,7 +141,7 @@
           <h3 class="font-bold text-slate-800 flex items-center gap-2 text-base">
             <span>📊 Répartition par Génération</span>
           </h3>
-          <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-medium">
+          <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">
             {{ stats.generationCount }} Niveaux
           </span>
         </div>
@@ -189,7 +186,7 @@
           <h3 class="font-bold text-slate-800 flex items-center gap-2 text-base">
             <span>🧠 Raisonnement Sémantique</span>
           </h3>
-          <span class="text-xs bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded-full">
+          <span class="text-xs bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded-full whitespace-nowrap">
             Inférence Active
           </span>
         </div>
@@ -309,8 +306,8 @@ const getGenLabel = (gen) => {
 }
 
 const getGenMembers = (gen) => {
-  return members.value.filter(m => {
-    const calculatedGen = stats.value.genMap.get(m.id) || m.generation || 1
+  return (members.value || []).filter(m => {
+    const calculatedGen = (stats.value?.genMap?.get?.(m.id)) ?? (Number(m.generation) || 1)
     return calculatedGen === gen
   })
 }

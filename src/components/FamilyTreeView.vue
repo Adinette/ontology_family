@@ -3,31 +3,33 @@
     <!-- Top Floating Toolbar inside the canvas -->
     <div class="absolute top-4 left-6 right-6 z-10 flex items-center justify-between pointer-events-none">
       <!-- Title & Legend -->
-      <div class="pointer-events-auto bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-emerald-900/10 shadow-sm flex items-center gap-4 text-xs">
+      <div class="pointer-events-auto bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-emerald-900/10 shadow-sm flex items-center gap-4 text-xs">
         <div>
-          <span class="font-bold text-slate-800 text-sm">Arbre Généalogique</span>
-          <span class="text-slate-500 block text-[11px]">Représentation visuelle des liens d'ascendance et d'alliance</span>
+          <span class="font-bold text-slate-800 text-sm">Arbre Généalogique Sémantique</span>
+          <span class="text-slate-500 block text-[11px]">
+            {{ members.length }} membres • Cliquez sur un membre pour révéler toutes ses relations déduites
+          </span>
         </div>
         <div class="h-6 w-px bg-slate-200 hidden sm:block"></div>
         <!-- Legend -->
-        <div class="hidden md:flex items-center gap-4 text-[11px] font-medium text-slate-600">
+        <div class="hidden md:flex items-center gap-3 text-[11px] font-medium text-slate-600">
           <div class="flex items-center gap-1.5">
-            <span class="w-4 h-0.5 bg-emerald-600 rounded"></span>
-            <span>Filiation (Parent-Enfant)</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-emerald-300"></span>
+            <span>Membre sélectionné</span>
           </div>
           <div class="flex items-center gap-1.5">
-            <span class="w-4 h-0.5 border-t-2 border-dashed border-rose-500"></span>
-            <span>Alliance (Conjoint)</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 ring-2 ring-amber-200"></span>
+            <span>Relation inférée</span>
           </div>
           <div class="flex items-center gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-            <span>Sélection active</span>
+            <span class="w-4 h-0.5 border-t-2 border-dashed border-rose-400"></span>
+            <span>Mariage 💍</span>
           </div>
         </div>
       </div>
 
       <!-- Canvas Controls: Zoom, Reset, Add -->
-      <div class="pointer-events-auto flex items-center gap-2 bg-white/90 backdrop-blur-md p-1.5 rounded-2xl border border-emerald-900/10 shadow-sm">
+      <div class="pointer-events-auto flex items-center gap-2 bg-white/95 backdrop-blur-md p-1.5 rounded-2xl border border-emerald-900/10 shadow-sm">
         <button
           @click="zoomIn"
           title="Zoomer (+)"
@@ -78,8 +80,8 @@
       class="flex-1 overflow-auto p-12 cursor-grab active:cursor-grabbing relative"
       style="background: radial-gradient(circle at 10% 20%, rgba(30, 86, 61, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(30, 86, 61, 0.05) 0%, transparent 25%), #d7ebe2;"
     >
-      <!-- Background subtle network graphics like screenshot -->
-      <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-25" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background subtle network graphics -->
+      <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="network-dots" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
             <circle cx="20" cy="20" r="1.5" fill="#2d7d59" opacity="0.4" />
@@ -93,324 +95,148 @@
 
       <!-- Zoomable Scaled Tree Container -->
       <div 
-        class="min-w-[1200px] min-h-[850px] mx-auto py-12 px-8 transition-transform duration-150 origin-top flex flex-col items-center justify-start space-y-16"
+        class="min-w-[1300px] min-h-[900px] mx-auto py-12 px-8 transition-transform duration-150 origin-top flex flex-col items-center justify-start space-y-14"
         :style="{ transform: `scale(${zoomLevel})` }"
       >
-
-        <!-- Generation 1 (Patriarches / Fondateurs) -->
-        <div class="flex flex-col items-center relative">
-          <div class="mb-3 px-3 py-1 bg-white/70 backdrop-blur-sm rounded-full text-[11px] font-bold text-emerald-900 border border-emerald-900/10 shadow-xs">
-            Génération 1 — Les Fondateurs
+        <!-- Dynamic Generations Render -->
+        <div 
+          v-for="(genGroup, gIdx) in generationGroups" 
+          :key="genGroup.generation"
+          class="w-full flex flex-col items-center relative"
+        >
+          <!-- Generation Header Badge -->
+          <div class="mb-5 px-4 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-emerald-950 border border-emerald-900/10 shadow-xs flex items-center gap-2">
+            <span>{{ getGenerationLabel(genGroup.generation) }}</span>
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.2 rounded-full font-semibold">
+              {{ genGroup.membersCount }} membre(s)
+            </span>
           </div>
 
-          <div class="flex items-center gap-10 relative">
-            <template v-for="person in gen1Members" :key="person.id">
-              <!-- Member Card -->
+          <!-- Generation Units (Couples & Individuals) -->
+          <div class="flex flex-wrap justify-center items-center gap-8 relative z-10 max-w-full">
+            <div 
+              v-for="unit in genGroup.units" 
+              :key="unit.id"
+              class="flex items-center gap-3 relative p-2 bg-white/40 backdrop-blur-xs rounded-3xl border border-emerald-900/5 shadow-xs"
+            >
+              <!-- Card Member 1 -->
               <div 
-                @click="handleCardClick(person.id)"
+                @click="handleCardClick(unit.member1.id)"
                 :class="[
-                  'group bg-white rounded-full py-1.5 pl-1.5 pr-5 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-3 relative z-10',
-                  selectedMemberId === person.id 
-                    ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/30 scale-105' 
-                    : isRelated(person.id)
-                    ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/20'
+                  'group bg-white rounded-2xl py-2 pl-2 pr-4 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-3 relative z-10',
+                  selectedMemberId === unit.member1.id 
+                    ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/50 scale-105' 
+                    : getRel(unit.member1.id)
+                    ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/40 scale-102'
                     : 'border-slate-200 hover:border-emerald-300'
                 ]"
-                style="min-width: 210px;"
+                style="min-width: 200px;"
               >
-                <img 
-                  :src="person.avatar" 
-                  class="w-10 h-10 rounded-full object-cover ring-2 ring-slate-100 group-hover:ring-emerald-400 transition-all shadow-xs" 
-                />
-                <div class="truncate text-left">
-                  <h4 class="text-xs font-bold text-slate-800 group-hover:text-emerald-900 truncate">
-                    {{ person.name }}
-                  </h4>
-                  <p class="text-[10px] text-slate-400">
-                    {{ person.birthYear }} – {{ person.deathYear || person.age + ' ans' }}
+                <div class="relative shrink-0">
+                  <img 
+                    :src="unit.member1.avatar" 
+                    class="w-10 h-10 rounded-full object-cover ring-2 ring-slate-100 group-hover:ring-emerald-400 transition-all shadow-xs" 
+                  />
+                  <span 
+                    :class="[
+                      'absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white',
+                      unit.member1.gender === 'M' ? 'bg-blue-500' : 'bg-rose-500'
+                    ]"
+                  ></span>
+                </div>
+                <div class="truncate text-left flex-1 min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <h4 class="text-xs font-bold text-slate-900 group-hover:text-emerald-900 truncate">
+                      {{ unit.member1.name }}
+                    </h4>
+                  </div>
+                  <p class="text-[10px] text-slate-500 truncate">
+                    {{ unit.member1.birthYear ? unit.member1.birthYear : '' }}
+                    {{ unit.member1.deathYear ? '– ' + unit.member1.deathYear : (unit.member1.age ? `(${unit.member1.age} ans)` : '') }}
                   </p>
+                  <!-- Relation Tag with Selected Person -->
+                  <div v-if="getRel(unit.member1.id)" class="mt-0.5">
+                    <span 
+                      :class="[
+                        'inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.2 rounded-full',
+                        getRel(unit.member1.id).badgeClass
+                      ]"
+                    >
+                      <span>{{ getRel(unit.member1.id).icon }}</span>
+                      <span>{{ getRel(unit.member1.id).label }}</span>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </template>
 
-            <!-- Spousal Line between Willow Carter & John Carter -->
-            <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-10 border-t-2 border-dashed border-rose-400 z-0"></div>
+              <!-- Dotted Spouse Connection Line -->
+              <div v-if="unit.member2" class="flex items-center justify-center text-rose-500 text-xs px-1 font-bold select-none" title="Marié(e)s">
+                <span class="w-4 border-t-2 border-dashed border-rose-400"></span>
+                <span class="px-0.5">💍</span>
+                <span class="w-4 border-t-2 border-dashed border-rose-400"></span>
+              </div>
+
+              <!-- Card Member 2 (Spouse if present) -->
+              <div 
+                v-if="unit.member2"
+                @click="handleCardClick(unit.member2.id)"
+                :class="[
+                  'group bg-white rounded-2xl py-2 pl-2 pr-4 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-3 relative z-10',
+                  selectedMemberId === unit.member2.id 
+                    ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/50 scale-105' 
+                    : getRel(unit.member2.id)
+                    ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/40 scale-102'
+                    : 'border-slate-200 hover:border-emerald-300'
+                ]"
+                style="min-width: 200px;"
+              >
+                <div class="relative shrink-0">
+                  <img 
+                    :src="unit.member2.avatar" 
+                    class="w-10 h-10 rounded-full object-cover ring-2 ring-slate-100 group-hover:ring-emerald-400 transition-all shadow-xs" 
+                  />
+                  <span 
+                    :class="[
+                      'absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white',
+                      unit.member2.gender === 'M' ? 'bg-blue-500' : 'bg-rose-500'
+                    ]"
+                  ></span>
+                </div>
+                <div class="truncate text-left flex-1 min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <h4 class="text-xs font-bold text-slate-900 group-hover:text-emerald-900 truncate">
+                      {{ unit.member2.name }}
+                    </h4>
+                  </div>
+                  <p class="text-[10px] text-slate-500 truncate">
+                    {{ unit.member2.birthYear ? unit.member2.birthYear : '' }}
+                    {{ unit.member2.deathYear ? '– ' + unit.member2.deathYear : (unit.member2.age ? `(${unit.member2.age} ans)` : '') }}
+                  </p>
+                  <!-- Relation Tag with Selected Person -->
+                  <div v-if="getRel(unit.member2.id)" class="mt-0.5">
+                    <span 
+                      :class="[
+                        'inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.2 rounded-full',
+                        getRel(unit.member2.id).badgeClass
+                      ]"
+                    >
+                      <span>{{ getRel(unit.member2.id).icon }}</span>
+                      <span>{{ getRel(unit.member2.id).label }}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- Vertical Branch Line descending from Gen 1 to Gen 2 -->
-          <div class="w-0.5 h-16 bg-emerald-600/70 mt-2 relative">
+          <!-- Vertical Connector Line to next generation -->
+          <div 
+            v-if="gIdx < generationGroups.length - 1" 
+            class="w-0.5 h-10 bg-emerald-600/50 mt-4 relative"
+          >
             <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-emerald-600"></span>
           </div>
         </div>
-
-        <!-- Generation 2 (Enfants & Leurs Conjoints) -->
-        <div class="w-full flex flex-col items-center relative">
-          <div class="mb-3 px-3 py-1 bg-white/70 backdrop-blur-sm rounded-full text-[11px] font-bold text-emerald-900 border border-emerald-900/10 shadow-xs">
-            Génération 2 — Les Enfants & Alliances
-          </div>
-
-          <!-- Horizontal descent bar across branches -->
-          <div class="w-4/5 h-0.5 bg-emerald-600/70 mb-6 relative">
-            <!-- Downward connectors to children couples -->
-            <span class="absolute left-1/4 top-0 w-0.5 h-6 bg-emerald-600/70"></span>
-            <span class="absolute right-1/4 top-0 w-0.5 h-6 bg-emerald-600/70"></span>
-          </div>
-
-          <div class="w-full flex justify-around items-start gap-12">
-            <!-- Branch A : William Carter & Sophia Adams -->
-            <div class="flex flex-col items-center">
-              <div class="flex items-center gap-6 relative">
-                <template v-for="person in branchA_Gen2" :key="person.id">
-                  <div 
-                    @click="handleCardClick(person.id)"
-                    :class="[
-                      'group bg-white rounded-full py-1.5 pl-1.5 pr-5 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-3 relative z-10',
-                      selectedMemberId === person.id 
-                        ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/30 scale-105' 
-                        : isRelated(person.id)
-                        ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/20'
-                        : 'border-slate-200 hover:border-emerald-300'
-                    ]"
-                    style="min-width: 200px;"
-                  >
-                    <img 
-                      :src="person.avatar" 
-                      class="w-10 h-10 rounded-full object-cover ring-2 ring-slate-100 group-hover:ring-emerald-400 transition-all shadow-xs" 
-                    />
-                    <div class="truncate text-left">
-                      <h4 class="text-xs font-bold text-slate-800 group-hover:text-emerald-900 truncate">
-                        {{ person.name }}
-                      </h4>
-                      <p class="text-[10px] text-slate-400">
-                        {{ person.birthYear }} {{ person.deathYear ? '– ' + person.deathYear : '(Âge: ' + person.age + ')' }}
-                      </p>
-                    </div>
-                  </div>
-                </template>
-                <!-- Dotted spouse link -->
-                <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-6 border-t-2 border-dashed border-rose-400 z-0"></div>
-              </div>
-
-              <!-- Descent line to Gen 3 Branch A -->
-              <div class="w-0.5 h-14 bg-emerald-600/70 mt-2"></div>
-            </div>
-
-            <!-- Branch B : Grace Carter & Ethan Mitchell -->
-            <div class="flex flex-col items-center">
-              <div class="flex items-center gap-6 relative">
-                <template v-for="person in branchB_Gen2" :key="person.id">
-                  <div 
-                    @click="handleCardClick(person.id)"
-                    :class="[
-                      'group bg-white rounded-full py-1.5 pl-1.5 pr-5 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-3 relative z-10',
-                      selectedMemberId === person.id 
-                        ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/30 scale-105' 
-                        : isRelated(person.id)
-                        ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/20'
-                        : 'border-slate-200 hover:border-emerald-300'
-                    ]"
-                    style="min-width: 200px;"
-                  >
-                    <img 
-                      :src="person.avatar" 
-                      class="w-10 h-10 rounded-full object-cover ring-2 ring-slate-100 group-hover:ring-emerald-400 transition-all shadow-xs" 
-                    />
-                    <div class="truncate text-left">
-                      <h4 class="text-xs font-bold text-slate-800 group-hover:text-emerald-900 truncate">
-                        {{ person.name }}
-                      </h4>
-                      <p class="text-[10px] text-slate-400">
-                        {{ person.birthYear }} {{ person.deathYear ? '– ' + person.deathYear : '(Âge: ' + person.age + ')' }}
-                      </p>
-                    </div>
-                  </div>
-                </template>
-                <!-- Dotted spouse link -->
-                <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-6 border-t-2 border-dashed border-rose-400 z-0"></div>
-              </div>
-
-              <!-- Descent line to Gen 3 Branch B -->
-              <div class="w-0.5 h-14 bg-emerald-600/70 mt-2"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Generation 3 (Petits-enfants & Conjoints) -->
-        <div class="w-full flex flex-col items-center relative">
-          <div class="mb-3 px-3 py-1 bg-white/70 backdrop-blur-sm rounded-full text-[11px] font-bold text-emerald-900 border border-emerald-900/10 shadow-xs">
-            Génération 3 — Les Petits-Enfants
-          </div>
-
-          <div class="w-full flex justify-around items-start gap-8">
-            <!-- Branch A.1: Ryan Simmons & Olivia Baker + Sierra Adams -->
-            <div class="flex flex-col items-center space-y-4">
-              <div class="flex items-center gap-4">
-                <!-- Sierra Adams (Célibataire) -->
-                <div 
-                  v-if="sierraPerson"
-                  @click="handleCardClick(sierraPerson.id)"
-                  :class="[
-                    'group bg-white rounded-full py-1.5 pl-1.5 pr-4 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-2.5 relative z-10',
-                    selectedMemberId === sierraPerson.id 
-                      ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/30 scale-105' 
-                      : isRelated(sierraPerson.id)
-                      ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/20'
-                      : 'border-slate-200 hover:border-emerald-300'
-                  ]"
-                  style="min-width: 185px;"
-                >
-                  <img :src="sierraPerson.avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-slate-100 shadow-xs" />
-                  <div class="truncate text-left">
-                    <h4 class="text-xs font-bold text-slate-800 truncate">{{ sierraPerson.name }}</h4>
-                    <p class="text-[10px] text-slate-400">{{ sierraPerson.age }} ans</p>
-                  </div>
-                </div>
-
-                <!-- Ryan Simmons & Olivia Baker (Couple) -->
-                <div class="flex items-center gap-4 relative">
-                  <template v-for="person in ryanOliviaCouple" :key="person.id">
-                    <div 
-                      @click="handleCardClick(person.id)"
-                      :class="[
-                        'group bg-white rounded-full py-1.5 pl-1.5 pr-4 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-2.5 relative z-10',
-                        selectedMemberId === person.id 
-                          ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/30 scale-105' 
-                          : isRelated(person.id)
-                          ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/20'
-                          : 'border-slate-200 hover:border-emerald-300'
-                      ]"
-                      style="min-width: 185px;"
-                    >
-                      <img :src="person.avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-slate-100 shadow-xs" />
-                      <div class="truncate text-left">
-                        <h4 class="text-xs font-bold text-slate-800 truncate">{{ person.name }}</h4>
-                        <p class="text-[10px] text-slate-400">{{ person.age }} ans</p>
-                      </div>
-                    </div>
-                  </template>
-                  <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-4 border-t-2 border-dashed border-rose-400 z-0"></div>
-                </div>
-              </div>
-
-              <!-- Descent to Gen 4 (Daniel Harrison & Lana Del Ray) -->
-              <div class="w-0.5 h-12 bg-emerald-600/70"></div>
-            </div>
-
-            <!-- Branch B.1: Orlando Mitchell & Nithya Menon -->
-            <div class="flex flex-col items-center space-y-4">
-              <div class="flex items-center gap-4 relative">
-                <template v-for="person in orlandoNithyaCouple" :key="person.id">
-                  <div 
-                    @click="handleCardClick(person.id)"
-                    :class="[
-                      'group bg-white rounded-full py-1.5 pl-1.5 pr-4 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-2.5 relative z-10',
-                      selectedMemberId === person.id 
-                        ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/30 scale-105' 
-                        : isRelated(person.id)
-                        ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/20'
-                        : 'border-slate-200 hover:border-emerald-300'
-                    ]"
-                    style="min-width: 185px;"
-                  >
-                    <img :src="person.avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-slate-100 shadow-xs" />
-                    <div class="truncate text-left">
-                      <h4 class="text-xs font-bold text-slate-800 truncate">{{ person.name }}</h4>
-                      <p class="text-[10px] text-slate-400">{{ person.age }} ans</p>
-                    </div>
-                  </div>
-                </template>
-                <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-4 border-t-2 border-dashed border-rose-400 z-0"></div>
-              </div>
-
-              <!-- Descent to Gen 4 (Ethan Mitchell Jr.) -->
-              <div class="w-0.5 h-12 bg-emerald-600/70"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Generation 4 (Arrière-petits-enfants) -->
-        <div class="w-full flex flex-col items-center relative">
-          <div class="mb-3 px-3 py-1 bg-white/70 backdrop-blur-sm rounded-full text-[11px] font-bold text-emerald-900 border border-emerald-900/10 shadow-xs">
-            Génération 4 — Les Arrière-Petits-Enfants
-          </div>
-
-          <div class="w-full flex justify-around items-center">
-            <!-- Children of Ryan & Olivia -->
-            <div class="flex items-center gap-6">
-              <template v-for="person in ryanChildren" :key="person.id">
-                <div 
-                  @click="handleCardClick(person.id)"
-                  :class="[
-                    'group bg-white rounded-full py-1.5 pl-1.5 pr-4 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-2.5 relative z-10',
-                    selectedMemberId === person.id 
-                      ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/30 scale-105' 
-                      : isRelated(person.id)
-                      ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/20'
-                      : 'border-slate-200 hover:border-emerald-300'
-                  ]"
-                  style="min-width: 180px;"
-                >
-                  <img :src="person.avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-slate-100 shadow-xs" />
-                  <div class="truncate text-left">
-                    <h4 class="text-xs font-bold text-slate-800 truncate">{{ person.name }}</h4>
-                    <p class="text-[10px] text-slate-400">{{ person.age }} ans</p>
-                  </div>
-                </div>
-              </template>
-            </div>
-
-            <!-- Children of Orlando & Nithya -->
-            <div class="flex items-center gap-6">
-              <template v-for="person in orlandoChildren" :key="person.id">
-                <div 
-                  @click="handleCardClick(person.id)"
-                  :class="[
-                    'group bg-white rounded-full py-1.5 pl-1.5 pr-4 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-2.5 relative z-10',
-                    selectedMemberId === person.id 
-                      ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/30 scale-105' 
-                      : isRelated(person.id)
-                      ? 'ring-2 ring-amber-400 border-amber-400 bg-amber-50/20'
-                      : 'border-slate-200 hover:border-emerald-300'
-                  ]"
-                  style="min-width: 180px;"
-                >
-                  <img :src="person.avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-slate-100 shadow-xs" />
-                  <div class="truncate text-left">
-                    <h4 class="text-xs font-bold text-slate-800 truncate">{{ person.name }}</h4>
-                    <p class="text-[10px] text-slate-400">{{ person.age }} ans</p>
-                  </div>
-                </div>
-              </template>
-            </div>
-          </div>
-        </div>
-
-        <!-- Extra / Newly Added Custom Members that don't fit default branches -->
-        <div v-if="customMembers.length > 0" class="w-full flex flex-col items-center pt-8 border-t border-emerald-900/10">
-          <div class="mb-3 px-3 py-1 bg-white/70 backdrop-blur-sm rounded-full text-[11px] font-bold text-emerald-900 border border-emerald-900/10 shadow-xs">
-            ✨ Nouveaux Membres Ajoutés ({{ customMembers.length }})
-          </div>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div 
-              v-for="person in customMembers" 
-              :key="person.id"
-              @click="handleCardClick(person.id)"
-              :class="[
-                'group bg-white rounded-full py-1.5 pl-1.5 pr-4 border shadow-sm hover:shadow-lg transition-all cursor-pointer flex items-center gap-2.5 relative z-10',
-                selectedMemberId === person.id 
-                  ? 'ring-2 ring-emerald-500 border-emerald-500 bg-emerald-50/30 scale-105' 
-                  : 'border-slate-200 hover:border-emerald-300'
-              ]"
-            >
-              <img :src="person.avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-slate-100 shadow-xs" />
-              <div class="truncate text-left">
-                <h4 class="text-xs font-bold text-slate-800 truncate">{{ person.name }}</h4>
-                <p class="text-[10px] text-slate-400">Gen {{ person.generation || 1 }} • {{ person.age }} ans</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
@@ -424,7 +250,6 @@ const {
   members,
   selectedMemberId,
   selectedMemberRelations,
-  reasoner,
   selectMember,
   openAddModal
 } = useFamilyStore()
@@ -433,11 +258,11 @@ const zoomLevel = ref(1.0)
 const canvasContainer = ref(null)
 
 const zoomIn = () => {
-  if (zoomLevel.value < 1.5) zoomLevel.value = +(zoomLevel.value + 0.1).toFixed(1)
+  if (zoomLevel.value < 1.6) zoomLevel.value = +(zoomLevel.value + 0.1).toFixed(1)
 }
 
 const zoomOut = () => {
-  if (zoomLevel.value > 0.6) zoomLevel.value = +(zoomLevel.value - 0.1).toFixed(1)
+  if (zoomLevel.value > 0.5) zoomLevel.value = +(zoomLevel.value - 0.1).toFixed(1)
 }
 
 const resetZoom = () => {
@@ -446,63 +271,143 @@ const resetZoom = () => {
 
 const handleCardClick = (id) => {
   if (selectedMemberId.value === id) {
-    selectMember(null) // toggle off
+    selectMember(null)
   } else {
     selectMember(id)
   }
 }
 
-// Check if a person is directly related to the currently selected member
-const isRelated = (personId) => {
-  if (!selectedMemberId.value || selectedMemberId.value === personId) return false
-  const rels = selectedMemberRelations.value
-  if (!rels) return false
-
-  return (
-    rels.parents?.some(p => p.id === personId) ||
-    rels.children?.some(c => c.id === personId) ||
-    rels.siblings?.some(s => s.id === personId) ||
-    rels.spouse?.id === personId
-  )
+const getGenerationLabel = (gen) => {
+  switch (Number(gen)) {
+    case 1:
+      return 'Génération 1 — Les Patriarches & Grands-Parents'
+    case 2:
+      return 'Génération 2 — Les Parents, Oncles & Tantes'
+    case 3:
+      return 'Génération 3 — Les Enfants, Petits-Enfants & Cousins'
+    case 4:
+      return 'Génération 4 — Arrière-Petits-Enfants'
+    default:
+      return `Génération ${gen}`
+  }
 }
 
-// Subsets of members for organized structured layout matching the screenshot
-const gen1Members = computed(() => {
-  return members.value.filter(m => m.id === 'm1' || m.id === 'm2')
-})
+// Calcul dynamique du lien exact entre un membre et la personne sélectionnée
+const getRel = (personId) => {
+  if (!selectedMemberId.value || selectedMemberId.value === personId) return null
+  const rels = selectedMemberRelations.value
+  if (!rels) return null
 
-const branchA_Gen2 = computed(() => {
-  return members.value.filter(m => m.id === 'm3' || m.id === 'm4')
-})
+  // 1. Conjoint
+  if (rels.spouse?.id === personId || rels.spouses?.some(s => s.id === personId)) {
+    return { label: 'Conjoint(e)', icon: '💍', badgeClass: 'bg-rose-100 text-rose-800' }
+  }
 
-const branchB_Gen2 = computed(() => {
-  return members.value.filter(m => m.id === 'm5' || m.id === 'm6')
-})
+  // 2. Parents
+  if (rels.father?.id === personId) {
+    return { label: 'Père', icon: '👨', badgeClass: 'bg-blue-100 text-blue-800' }
+  }
+  if (rels.mother?.id === personId) {
+    return { label: 'Mère', icon: '👩', badgeClass: 'bg-rose-100 text-rose-800' }
+  }
+  if (rels.parents?.some(p => p.id === personId)) {
+    const p = rels.parents.find(x => x.id === personId)
+    return { label: p?.gender === 'M' ? 'Père' : 'Mère', icon: p?.gender === 'M' ? '👨' : '👩', badgeClass: 'bg-blue-100 text-blue-800' }
+  }
 
-const sierraPerson = computed(() => {
-  return members.value.find(m => m.id === 'm7')
-})
+  // 3. Enfants
+  if (rels.children?.some(c => c.id === personId)) {
+    const c = rels.children.find(x => x.id === personId)
+    return { label: c?.gender === 'M' ? 'Fils' : 'Fille', icon: c?.gender === 'M' ? '👦' : '👧', badgeClass: 'bg-emerald-100 text-emerald-800' }
+  }
 
-const ryanOliviaCouple = computed(() => {
-  return members.value.filter(m => m.id === 'm8' || m.id === 'm9')
-})
+  // 4. Petits-Enfants (Raisonnement SPARQL)
+  if (rels.grandchildren?.some(gc => gc.id === personId)) {
+    const gc = rels.grandchildren.find(x => x.id === personId)
+    return { label: gc?.gender === 'M' ? 'Petit-fils' : 'Petite-fille', icon: gc?.gender === 'M' ? '👦' : '👧', badgeClass: 'bg-teal-100 text-teal-800' }
+  }
 
-const orlandoNithyaCouple = computed(() => {
-  return members.value.filter(m => m.id === 'm10' || m.id === 'm11')
-})
+  // 5. Grands-Parents
+  if (rels.grandparents?.some(gp => gp.id === personId)) {
+    const gp = rels.grandparents.find(x => x.id === personId)
+    return { label: gp?.gender === 'M' ? 'Grand-père' : 'Grand-mère', icon: '👴', badgeClass: 'bg-amber-100 text-amber-800' }
+  }
 
-const ryanChildren = computed(() => {
-  return members.value.filter(m => m.fatherId === 'm8' || m.motherId === 'm9' || m.id === 'm12' || m.id === 'm13')
-})
+  // 6. Frères & Sœurs
+  if (rels.siblings?.some(s => s.id === personId)) {
+    const s = rels.siblings.find(x => x.id === personId)
+    return { label: s?.gender === 'M' ? 'Frère' : 'Sœur', icon: s?.gender === 'M' ? '👨' : '👩', badgeClass: 'bg-indigo-100 text-indigo-800' }
+  }
 
-const orlandoChildren = computed(() => {
-  return members.value.filter(m => m.fatherId === 'm10' || m.motherId === 'm11' || m.id === 'm14')
-})
+  // 7. Oncles & Tantes
+  if (rels.unclesAndAunts?.some(u => u.id === personId)) {
+    const u = rels.unclesAndAunts.find(x => x.id === personId)
+    return { label: u?.gender === 'M' ? 'Oncle' : 'Tante', icon: '⭐', badgeClass: 'bg-purple-100 text-purple-800' }
+  }
 
-// Any other custom member added by the user
-const knownStaticIds = new Set(['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13', 'm14'])
-const customMembers = computed(() => {
-  return members.value.filter(m => !knownStaticIds.has(m.id))
+  // 8. Neveux & Nièces
+  if (rels.nephewsAndNieces?.some(n => n.id === personId)) {
+    const n = rels.nephewsAndNieces.find(x => x.id === personId)
+    return { label: n?.gender === 'M' ? 'Neveu' : 'Nièce', icon: '🌱', badgeClass: 'bg-emerald-100 text-emerald-800' }
+  }
+
+  // 9. Cousins Germains
+  if (rels.cousins?.some(co => co.id === personId)) {
+    return { label: 'Cousin(e)', icon: '🤝', badgeClass: 'bg-amber-100 text-amber-800' }
+  }
+
+  return null
+}
+
+// Organisation dynamique des membres par génération et par couple
+const generationGroups = computed(() => {
+  const list = members.value || []
+  if (list.length === 0) return []
+
+  // Trouver toutes les générations distinctes
+  const gens = [...new Set(list.map(m => Number(m.generation) || 1))].sort((a, b) => a - b)
+
+  return gens.map(gen => {
+    const genMembers = list.filter(m => (Number(m.generation) || 1) === gen)
+    const visited = new Set()
+    const units = []
+
+    for (const m of genMembers) {
+      if (visited.has(m.id)) continue
+
+      // Chercher le conjoint dans la même génération
+      let spouse = null
+      if (m.spouseId) {
+        spouse = genMembers.find(other => other.id === m.spouseId)
+      } else {
+        spouse = genMembers.find(other => other.spouseId === m.id)
+      }
+
+      if (spouse && spouse.id !== m.id && !visited.has(spouse.id)) {
+        visited.add(m.id)
+        visited.add(spouse.id)
+        // Mettre l'homme à gauche s'il y en a un
+        const [m1, m2] = m.gender === 'M' ? [m, spouse] : [spouse, m]
+        units.push({
+          id: `${m1.id}_${m2.id}`,
+          member1: m1,
+          member2: m2
+        })
+      } else {
+        visited.add(m.id)
+        units.push({
+          id: m.id,
+          member1: m,
+          member2: null
+        })
+      }
+    }
+
+    return {
+      generation: gen,
+      membersCount: genMembers.length,
+      units
+    }
+  })
 })
 </script>
-

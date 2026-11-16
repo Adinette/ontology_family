@@ -18,7 +18,7 @@
           </span>
         </h2>
         <p class="text-xs text-slate-500 font-medium">
-          {{ stats.totalMembers }} individus • {{ stats.generationCount }} générations • {{ stats.assertedRelationsCount }} liens directs
+          {{ stats.totalMembers }} individus • {{ stats.generationCount }} générations • {{ stats.assertedRelationsCount }} liens directs (+{{ stats.inferredRelationsCount }} inférés)
         </p>
       </div>
     </div>
@@ -87,7 +87,7 @@
         </button>
       </div>
 
-      <!-- Add Member Pill Button (like screenshot "+ Add Family") -->
+      <!-- Add Member Pill Button -->
       <button
         @click="openAddModal"
         class="flex items-center gap-2 px-4 py-2 border-2 border-emerald-600 hover:border-emerald-700 text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50/70 font-semibold text-sm rounded-full transition-all shadow-sm active:scale-95"
@@ -99,15 +99,20 @@
         <span>Ajouter un membre</span>
       </button>
 
-      <!-- Profile Avatar -->
-      <div class="flex items-center gap-2 border-l border-slate-200 pl-4">
+      <!-- Profile Avatar (Étudiante / Utilisateur) -->
+      <div class="flex items-center gap-3 border-l border-slate-200 pl-4">
         <div class="relative">
           <img
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-            alt="Profil"
-            class="w-9 h-9 rounded-full object-cover ring-2 ring-emerald-500/20"
+            :src="currentUser?.avatar || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=160&auto=format&fit=crop&q=80'"
+            :alt="currentUser?.name || 'Persévérance DOSSOU'"
+            class="w-9 h-9 rounded-full object-cover ring-2 ring-emerald-500/30 shadow-xs"
           />
           <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full"></span>
+        </div>
+        <div class="hidden xl:block text-left">
+          <span class="text-xs font-bold text-slate-800 block leading-tight">
+            {{ currentUser?.name || 'Persévérance DOSSOU' }}
+          </span>
         </div>
       </div>
     </div>
@@ -119,14 +124,32 @@ import { computed } from 'vue'
 import { useFamilyStore } from '../composables/useFamilyStore.js'
 
 const {
+  members,
   activeMenu,
   globalSearch,
   stats,
   openAddModal
 } = useFamilyStore()
 
+// Titre dynamique de la famille basé sur l'ontologie
 const familyTitle = computed(() => {
-  return 'Carter Family'
+  const list = members.value || []
+  if (list.length > 0) {
+    const counts = {}
+    for (const m of list) {
+      const ln = m.lastName || (m.name ? m.name.split(' ').slice(1).join(' ') : '')
+      if (ln) counts[ln] = (counts[ln] || 0) + 1
+    }
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0]
+    if (top) return `Famille ${top}`
+  }
+  return 'Famille DOSSOU'
+})
+
+// Profil actif (ex: Persévérance DOSSOU qui a conçu l'ontologie)
+const currentUser = computed(() => {
+  const list = members.value || []
+  return list.find(m => m.id === 'Perseverance_DOSSOU' || m.name?.includes('Persévérance')) || list[0] || null
 })
 
 const currentViewLabel = computed(() => {
@@ -140,4 +163,3 @@ const currentViewLabel = computed(() => {
   }
 })
 </script>
-

@@ -10,7 +10,7 @@
           </span>
         </h2>
         <p class="text-xs text-slate-500 mt-0.5">
-          Consultez, modifiez ou ajoutez les membres de la famille fictive.
+          Consultez, modifiez ou ajoutez les membres de la famille.
         </p>
       </div>
 

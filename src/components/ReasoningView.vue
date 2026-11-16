@@ -221,20 +221,41 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useFamilyStore } from '../composables/useFamilyStore.js'
 
 const {
   members,
   stats,
-  reasoner
+  reasoner,
+  isConnected
 } = useFamilyStore()
+
+import { api } from '../services/api.js'
 
 const showTurtleCode = ref(false)
 const copied = ref(false)
+const remoteTurtleCode = ref('')
 
 const turtleCode = computed(() => {
+  if (remoteTurtleCode.value) {
+    return remoteTurtleCode.value
+  }
   return reasoner.value.exportTurtle()
+})
+
+// Charger le code Turtle réel depuis Fuseki
+watch([showTurtleCode, isConnected], async ([show, connected]) => {
+  if (show && connected && !remoteTurtleCode.value) {
+    try {
+      const res = await fetch(api.getExportTurtleUrl())
+      if (res.ok) {
+        remoteTurtleCode.value = await res.text()
+      }
+    } catch {
+      // fallback local
+    }
+  }
 })
 
 const copyTurtleCode = () => {
@@ -246,11 +267,15 @@ const copyTurtleCode = () => {
 }
 
 const downloadTurtle = () => {
+  if (isConnected.value) {
+    window.open(api.getExportTurtleUrl(), '_blank')
+    return
+  }
   const blob = new Blob([turtleCode.value], { type: 'text/turtle;charset=utf-8;' })
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.setAttribute('href', url)
-  link.setAttribute('download', 'ontologie_famille_carter.ttl')
+  link.setAttribute('download', 'ontologie_famille_dossou.ttl')
   link.style.visibility = 'hidden'
   document.body.appendChild(link)
   link.click()

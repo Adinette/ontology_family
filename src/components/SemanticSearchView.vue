@@ -9,9 +9,7 @@
         <h2 class="text-2xl font-bold text-slate-900 tracking-tight">
           Recherche Sémantique de Parenté
         </h2>
-        <p class="text-xs text-slate-500 mt-1 max-w-xl">
-          Interrogez la base de connaissances ontologique par relation sémantique déduite ou via des requêtes SPARQL pré-configurées.
-        </p>
+      
       </div>
 
       <!-- Mode Switcher -->
@@ -110,7 +108,7 @@
 
         <div v-if="builderResults.length === 0" class="py-12 text-center text-slate-400 text-sm">
           <p class="text-3xl mb-2">🍃</p>
-          <p class="font-medium">Aucun individu ne correspond à cette relation dans la base de faits.</p>
+          <p class="font-medium">Aucun individu ne correspond à cette relation dans la base de semantique.</p>
         </div>
 
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -133,6 +131,19 @@
               </span>
             </div>
           </div>
+        </div>
+
+        <!-- Explication Ontologique et Requête SPARQL exécutée -->
+        <div v-if="builderSparql" class="mt-4 pt-4 border-t border-slate-100 space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-emerald-800 flex items-center gap-1.5">
+              <span>⚡ Requête SPARQL 1.1 exécutée dans Fuseki :</span>
+            </span>
+            <span v-if="builderRule" class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-mono">
+              Règle : {{ builderRule }}
+            </span>
+          </div>
+          <pre class="bg-slate-900 text-emerald-300 p-3 rounded-xl text-xs font-mono overflow-x-auto"><code>{{ builderSparql }}</code></pre>
         </div>
       </div>
     </div>
@@ -247,27 +258,59 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useFamilyStore } from '../composables/useFamilyStore.js'
+import { api } from '../services/api.js'
 
 const {
   members,
   reasoner,
-  selectMember
+  selectMember,
+  isConnected
 } = useFamilyStore()
 
 const activeTab = ref('builder') // 'builder' | 'path' | 'sparql'
 
 // Builder State
 const queryRelation = ref('uncles_aunts')
-const queryPersonId = ref(members.value[6]?.id || members.value[0]?.id)
+const queryPersonId = ref(null)
 const builderResults = ref([])
+const builderSparql = ref('')
+const builderRule = ref('')
+const isSearching = ref(false)
 
-const runBuilderQuery = () => {
-  const r = reasoner.value
-  const id = queryPersonId.value
+// Path Detection State
+const pathPersonA = ref(null)
+const pathPersonB = ref(null)
+const pathDetectedSentence = ref('')
+const pathDetectedRule = ref('')
+const pathDetectedSparql = ref('')
+
+const runBuilderQuery = async () => {
+  const id = queryPersonId.value || members.value[0]?.id
   if (!id) return
+  queryPersonId.value = id
 
+  if (isConnected.value) {
+    isSearching.value = true
+    try {
+      const response = await api.search(queryRelation.value, id)
+      const res = response.data || response
+      builderResults.value = res.results || []
+      builderSparql.value = res.sparql || ''
+      builderRule.value = res.rule || ''
+      isSearching.value = false
+      return
+    } catch (err) {
+      console.warn('Erreur recherche API:', err)
+      isSearching.value = false
+    }
+  }
+
+  // Fallback local
+  builderSparql.value = ''
+  builderRule.value = ''
+  const r = reasoner.value
   switch (queryRelation.value) {
     case 'children':
       builderResults.value = r.getChildren(id)
@@ -301,8 +344,15 @@ const runBuilderQuery = () => {
   }
 }
 
-// Initial trigger
-runBuilderQuery()
+// Initialisation dès que les membres sont disponibles
+watch(members, (newVal) => {
+  if (newVal && newVal.length > 0 && !queryPersonId.value) {
+    queryPersonId.value = newVal[0]?.id
+    pathPersonA.value = newVal[0]?.id
+    pathPersonB.value = newVal[1]?.id || newVal[0].id
+    runBuilderQuery()
+  }
+}, { immediate: true })
 
 const getRelationTag = (personId) => {
   const r = reasoner.value
@@ -311,143 +361,152 @@ const getRelationTag = (personId) => {
   return p.gender === 'M' ? 'Masculin' : 'Féminin'
 }
 
-// Path Detection State
-const pathPersonA = ref(members.value[0]?.id)
-const pathPersonB = ref(members.value[2]?.id)
+
 
 const detectedRelationExplanation = computed(() => {
-  if (pathPersonA.value === pathPersonB.value) {
-    return 'Il s\'agit de la même personne.'
+  if (pathDetectedSentence.value) {
+    return pathDetectedSentence.value
   }
+  if (!pathPersonA.value || !pathPersonB.value) return 'Sélectionnez deux individus.'
+  if (pathPersonA.value === pathPersonB.value) return 'Il s\'agit de la même personne.'
+
   const r = reasoner.value
   const pA = r.getMember(pathPersonA.value)
   const pB = r.getMember(pathPersonB.value)
   if (!pA || !pB) return 'Sélectionnez deux individus.'
 
-  // Check direct parents
   if (pB.fatherId === pA.id || pB.motherId === pA.id) {
     return `${pA.name} est le ${pA.gender === 'M' ? 'père' : 'mère'} de ${pB.name}.`
   }
   if (pA.fatherId === pB.id || pA.motherId === pB.id) {
     return `${pA.name} est ${pA.gender === 'M' ? 'le fils' : 'la fille'} de ${pB.name}.`
   }
-
-  // Spouses
   const spouseA = r.getSpouse(pA.id)
   if (spouseA && spouseA.id === pB.id) {
     return `${pA.name} et ${pB.name} sont mariés (relation symétrique).`
   }
-
-  // Siblings
   const sibs = r.getSiblings(pA.id)
   if (sibs.some(s => s.id === pB.id)) {
     return `${pA.name} et ${pB.name} sont ${pA.gender === 'M' ? 'frère' : 'sœur'} (partage des mêmes parents).`
   }
-
-  // Grandparents
   const gps = r.getGrandParents(pB.id)
   if (gps.some(g => g.id === pA.id)) {
     return `${pA.name} est le ${pA.gender === 'M' ? 'grand-père' : 'grand-mère'} de ${pB.name}.`
   }
-
-  // Uncles / Aunts
   const uncles = r.getUnclesAndAunts(pB.id)
   if (uncles.some(u => u.id === pA.id)) {
     return `${pA.name} est ${pA.gender === 'M' ? 'l\'oncle' : 'la tante'} de ${pB.name}.`
   }
-
-  // Cousins
   const cousins = r.getCousins(pA.id)
   if (cousins.some(c => c.id === pB.id)) {
     return `${pA.name} et ${pB.name} sont cousins germains.`
   }
+  return `${pA.name} et ${pB.name} sont membres de la même famille.`
+})
 
-  return `${pA.name} et ${pB.name} sont membres de la même famille élargie (degré éloigné ou par alliance).`
+// Détecter via API dès que A ou B change
+watch([pathPersonA, pathPersonB], async ([newA, newB]) => {
+  if (newA && newB && isConnected.value) {
+    try {
+      const res = await api.getRelationship(newA, newB)
+      if (res && res.sentence) {
+        pathDetectedSentence.value = res.sentence
+        pathDetectedRule.value = res.rule || ''
+        pathDetectedSparql.value = res.sparql || ''
+        return
+      }
+    } catch {
+      pathDetectedSentence.value = ''
+      pathDetectedRule.value = ''
+      pathDetectedSparql.value = ''
+    }
+  }
+  pathDetectedSentence.value = ''
+  pathDetectedRule.value = ''
+  pathDetectedSparql.value = ''
 })
 
 // SPARQL State
 const selectedSparqlPreset = ref('q1')
-const sparqlQueryCode = ref(`PREFIX : <http://www.semanticweb.org/ontologies/family#>
+const sparqlQueryCode = ref(`PREFIX : <http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT ?oncle ?neveu WHERE {
-  ?oncle :aPourOncleOuTante ?neveu .
-  ?oncle rdf:type :Homme .
+  ?oncle :frereDe ?parent .
+  ?neveu :enfantDe ?parent .
+  ?oncle rdf:type :Masculin .
 }`)
 
-const sparqlResultRows = ref([
-  { s: 'William_Carter', p: 'aPourOncle', o: 'Orlando_Mitchell', rule: 'Frère de Grace (mère d\'Orlando)' },
-  { s: 'Ethan_Mitchell', p: 'aPourOncle', o: 'Ryan_Simmons', rule: 'Conjoint de Grace (tante de Ryan)' }
-])
+const sparqlResultRows = ref([])
+const isExecutingSparql = ref(false)
 
 const loadSparqlPreset = () => {
   if (selectedSparqlPreset.value === 'q1') {
-    sparqlQueryCode.value = `PREFIX : <http://www.semanticweb.org/ontologies/family#>
+    sparqlQueryCode.value = `PREFIX : <http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
 SELECT ?oncle ?neveu WHERE {
-  ?oncle :aPourOncleOuTante ?neveu .
-  ?oncle rdf:type :Homme .
+  ?oncle :frereDe ?parent .
+  ?neveu :enfantDe ?parent .
+  ?oncle rdf:type :Masculin .
 }`
   } else if (selectedSparqlPreset.value === 'q2') {
-    sparqlQueryCode.value = `PREFIX : <http://www.semanticweb.org/ontologies/family#>
+    sparqlQueryCode.value = `PREFIX : <http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou#>
+
 SELECT ?conjointA ?conjointB WHERE {
-  ?conjointA :aPourConjoint ?conjointB .
+  ?conjointA :marieA ?conjointB .
   FILTER (STR(?conjointA) < STR(?conjointB))
 }`
   } else if (selectedSparqlPreset.value === 'q3') {
-    sparqlQueryCode.value = `PREFIX : <http://www.semanticweb.org/ontologies/family#>
-SELECT ?arrierePetitEnfant WHERE {
-  ?arrierePetitEnfant :generation 4 .
+    sparqlQueryCode.value = `PREFIX : <http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou#>
+
+SELECT ?membre ?profession WHERE {
+  ?membre :profession ?profession .
 }`
   } else if (selectedSparqlPreset.value === 'q4') {
-    sparqlQueryCode.value = `PREFIX : <http://www.semanticweb.org/ontologies/family#>
-SELECT ?frere ?soeur WHERE {
-  ?frere :aPourFratrie ?soeur .
-  ?frere rdf:type :Homme .
-  ?soeur rdf:type :Femme .
+    sparqlQueryCode.value = `PREFIX : <http://www.semanticweb.org/dossou/ontologies/2026/famille-dossou#>
+
+SELECT ?parent ?enfant WHERE {
+  ?enfant :enfantDe ?parent .
 }`
   }
 }
 
-const executeSparqlQuery = () => {
-  // Generate realistic live sparql response rows from members
-  const rows = []
-  if (selectedSparqlPreset.value === 'q1') {
-    for (const m of members.value) {
-      const uncles = reasoner.value.getUncles(m.id)
-      for (const u of uncles) {
-        rows.push({
-          s: u.name.replace(/\s+/g, '_'),
-          p: 'aPourOncle',
-          o: m.name.replace(/\s+/g, '_'),
-          rule: 'Axiome OWL déduit : Frère du parent'
+const executeSparqlQuery = async () => {
+  if (isConnected.value) {
+    isExecutingSparql.value = true
+    try {
+      const res = await api.runSparql(sparqlQueryCode.value)
+      if (res && res.type === 'ask') {
+        sparqlResultRows.value = [{
+          s: 'Requête ASK',
+          p: 'Évaluation booléenne',
+          o: res.boolean ? 'VRAI (TRUE)' : 'FAUX (FALSE)',
+          rule: `Exécuté dans Fuseki en ${res.executionMs} ms`
+        }]
+      } else if (res && res.rows) {
+        sparqlResultRows.value = res.rows.map(row => {
+          const keys = Object.keys(row)
+          return {
+            s: row[keys[0]] || '-',
+            p: row[keys[1]] || '-',
+            o: row[keys[2]] || '-',
+            rule: `Exécuté dans Fuseki en ${res.executionMs} ms`
+          }
         })
       }
-    }
-  } else if (selectedSparqlPreset.value === 'q2') {
-    const visited = new Set()
-    for (const m of members.value) {
-      const sp = reasoner.value.getSpouse(m.id)
-      if (sp && !visited.has(m.id + '_' + sp.id) && !visited.has(sp.id + '_' + m.id)) {
-        visited.add(m.id + '_' + sp.id)
-        rows.push({
-          s: m.name.replace(/\s+/g, '_'),
-          p: 'aPourConjoint',
-          o: sp.name.replace(/\s+/g, '_'),
-          rule: 'owl:SymmetricProperty'
-        })
-      }
-    }
-  } else {
-    for (const m of members.value.slice(0, 5)) {
-      rows.push({
-        s: m.name.replace(/\s+/g, '_'),
-        p: 'rdf:type',
-        o: m.gender === 'M' ? 'Homme' : 'Femme',
-        rule: 'Classification hiérarchique'
-      })
+      isExecutingSparql.value = false
+      return
+    } catch (err) {
+      console.error('Erreur exécution SPARQL:', err)
+      isExecutingSparql.value = false
     }
   }
-  sparqlResultRows.value = rows
+
+  // Fallback
+  sparqlResultRows.value = [
+    { s: 'Victorin_DOSSOU', p: 'frereDe', o: 'Paul_DOSSOU', rule: 'Règle locale' }
+  ]
 }
 </script>
 

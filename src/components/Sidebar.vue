@@ -11,8 +11,8 @@
           </svg>
         </div>
         <div>
-          <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-1">
-          <span class="text-emerald-300 font-extrabold">Tree</span>
+          <h1 class="text-xl font-bold tracking-tight text-white flex items-center">
+            <span>Ances</span><span class="text-emerald-300 font-extrabold">Tree</span>
           </h1>
         </div>
       </div>
@@ -121,15 +121,37 @@
 
     <!-- Bottom Footer Card & Actions -->
     <div class="p-4 border-t border-[#2a6d4f] space-y-3">
-      <!-- Mini summary card -->
-      <div class="bg-[#184631] p-3 rounded-xl border border-emerald-700/40 text-xs">
-        <div class="flex items-center justify-between text-emerald-200/90 mb-1.5">
-          <span class="font-medium">TP Web Sémantique</span>
-          <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-mono">IFRI</span>
+
+      <!-- Pastille Statut Connexion API + Fuseki -->
+      <div 
+        @click="checkConnection"
+        :title="isConnected ? 'Cliquez pour réactualiser l\'état' : 'Cliquez pour tenter de vous reconnecter à l\'API'"
+        :class="[
+          'p-2.5 rounded-xl border text-xs cursor-pointer transition-all flex items-center justify-between',
+          isConnected 
+            ? 'bg-emerald-950/60 border-emerald-600/40 text-emerald-200 hover:bg-emerald-950/80' 
+            : 'bg-rose-950/50 border-rose-700/40 text-rose-200 hover:bg-rose-950/70'
+        ]"
+      >
+        <div class="flex items-center gap-2.5">
+          <span 
+            :class="[
+              'w-2.5 h-2.5 rounded-full shrink-0',
+              isCheckingConnection ? 'bg-amber-400 animate-ping' : (isConnected ? 'bg-emerald-400 ring-2 ring-emerald-400/40' : 'bg-rose-500')
+            ]"
+          ></span>
+          <div>
+            <div class="font-bold text-[11px] leading-tight">
+              {{ isConnected ? 'API + Fuseki connectés' : 'Déconnecté du backend' }}
+            </div>
+            <div class="text-[10px] opacity-75">
+              {{ isConnected ? `${tripleCount} triplets RDF actifs` : 'Mode local (cliquez pour tester)' }}
+            </div>
+          </div>
         </div>
-        <div class="text-[11px] text-emerald-200/70 leading-relaxed">
-          Inférence des parentés, axiomes inverses et fermeture transitive.
-        </div>
+        <span class="text-xs opacity-70 hover:opacity-100">
+          🔄
+        </span>
       </div>
 
       <!-- Quick Reset Button -->
@@ -155,7 +177,11 @@ const {
   activeMenu,
   stats,
   openAddModal,
-  resetToDefault
+  resetToDefault,
+  isConnected,
+  isCheckingConnection,
+  tripleCount,
+  checkConnection
 } = useFamilyStore()
 </script>
 

@@ -40,7 +40,7 @@
               v-model="form.name"
               type="text"
               required
-              placeholder="Ex: William Carter"
+              placeholder="Ex: Paul DOSSOU"
               class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all"
             />
           </div>
@@ -253,14 +253,8 @@ const {
 const currentYear = new Date().getFullYear()
 
 const avatarPresets = [
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&auto=format&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=160&auto=format&fit=crop&q=80',
   'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=160&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=160&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=160&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=160&auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=160&auto=format&fit=crop&q=80'
 ]
 
 const form = reactive({
@@ -313,32 +307,38 @@ const potentialSpouses = computed(() => {
   return members.value
 })
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (!form.name.trim()) return
 
-  addMember({
-    name: form.name,
-    gender: form.gender,
-    age: form.age,
-    birthYear: form.birthYear,
-    fatherId: form.fatherId,
-    motherId: form.motherId,
-    spouseId: form.spouseId,
-    profession: form.profession,
-    avatar: form.avatar
-  })
+  try {
+    // Utilisation directe de la fonction du store (qui gère l'API, le rechargement et le fallback)
+    await addMember({
+      name: form.name,
+      gender: form.gender,
+      age: form.age,
+      birthYear: form.birthYear,
+      fatherId: form.fatherId,
+      motherId: form.motherId,
+      spouseId: form.spouseId,
+      profession: form.profession,
+      avatar: form.avatar
+    })
 
-  // Reset form
-  form.name = ''
-  form.gender = 'M'
-  form.age = 30
-  form.birthYear = currentYear - 30
-  form.fatherId = null
-  form.motherId = null
-  form.spouseId = null
-  form.profession = ''
+    // Réinitialisation du formulaire
+    form.name = ''
+    form.gender = 'M'
+    form.age = 30
+    form.birthYear = currentYear - 30
+    form.fatherId = null
+    form.motherId = null
+    form.spouseId = null
+    form.profession = ''
 
-  closeAddModal()
+    // Fermeture de la modale
+    closeAddModal()
+  } catch (err) {
+    console.error("Erreur lors de l'ajout du membre :", err)
+  }
 }
 </script>
 
